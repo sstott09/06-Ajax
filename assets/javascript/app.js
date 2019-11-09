@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var dances = ["Disco", "Bollywood Dance","Tap Dance", "The Twist", "Break Dancing", "Flamenco Dance", "Gangnam Style", "Belly Dance", "Salsa", "Line Dance", "Waltz", "Flossing"];
+    var dances = ["Disco", "Bollywood Dance", "Tap Dance", "The Twist", "Break Dancing", "Flamenco Dance", "Gangnam Style", "Belly Dance", "Salsa", "Line Dance", "Waltz", "Flossing"];
     function generateButtons() {
         $(".buttons-container").empty();
         for (var i = 0; i < dances.length; i++) {
@@ -24,14 +24,14 @@ $(document).ready(function () {
     $(document).on("click", ".top-button", function () {
         $(".gify-container").empty();
         var buttonName = $(this).attr("data-type");
-        var queryString = "http://api.giphy.com/v1/gifs/search?q=" + buttonName + "&api_key=yrFpx3WVLoEmze015iNhTNv3JXIKv2Kd&limit=10"; 
+        var queryString = "http://api.giphy.com/v1/gifs/search?q=" + buttonName + "&api_key=yrFpx3WVLoEmze015iNhTNv3JXIKv2Kd&limit=10";
         $.ajax({
             url: queryString,
             method: "GET"
-        }).then(function(res){
+        }).then(function (res) {
             console.log(res)
             var results = res.data;
-            for(var i=0; i<results.length; i++){
+            for (var i = 0; i < results.length; i++) {
                 var danceDiv = $("<div class='dance-item' >");
                 var animatedURl = results[i].images.fixed_height.url;
                 var stillURL = results[i].images.fixed_height_still.url;
@@ -46,18 +46,18 @@ $(document).ready(function () {
                 danceDiv.append(danceImage)
                 $(".gify-container").append(danceDiv)
 
-                
+
             }
         })
     })
 
     $(document).on("click", ".dance-image", function () {
         var state = $(this).attr("data-state");
-        if(state == "still"){
+        if (state == "still") {
             $(this).attr("src", $(this).attr("data-animate"));
             $(this).attr("data-state", "animate")
         }
-        if(state == "animate"){
+        if (state == "animate") {
             $(this).attr("src", $(this).attr("data-still"));
             $(this).attr("data-state", "still");
 
