@@ -24,7 +24,7 @@ $(document).ready(function () {
     $(document).on("click", ".top-button", function () {
         $(".gify-container").empty();
         var buttonName = $(this).attr("data-type");
-        var queryString = "http://api.giphy.com/v1/gifs/search?q=" + buttonName + "&api_key=yrFpx3WVLoEmze015iNhTNv3JXIKv2Kd&limit=10";
+        var queryString = "https://api.giphy.com/v1/gifs/search?q=" + buttonName + "&api_key=yrFpx3WVLoEmze015iNhTNv3JXIKv2Kd&limit=10";
         $.ajax({
             url: queryString,
             method: "GET"
