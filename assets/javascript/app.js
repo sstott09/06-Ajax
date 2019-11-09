@@ -33,24 +33,33 @@ $(document).ready(function () {
             var results = res.data;
             for (var i = 0; i < results.length; i++) {
                 var danceDiv = $("<div class='dance-item' >");
-                var animatedURl = results[i].images.fixed_height.url;
+                var animatedURL = results[i].images.fixed_height.url;
                 var stillURL = results[i].images.fixed_height_still.url;
 
                 var danceImage = $("<img>");
-                danceImage.attr("src", animatedURl);
+                danceImage.attr("src", stillURL);
                 danceImage.addClass("dance-image");
-                danceImage.attr("data-state", "animated");
-                danceImage.attr("data-animate", animatedURl);
+                danceImage.attr("data-state", "still");
+                danceImage.attr("data-animate", animatedURL);
                 danceImage.attr("data-still", stillURL);
 
-                danceDiv.append(danceImage)
-                $(".gify-container").append(danceDiv)
+                //Append the GIF Rating
+                var ratingDiv = $("<div>");
+                ratingDiv.text("Rating: " + results[i].rating);
+                // danceImage.prepend(ratingDiv);
+
+                danceDiv.append(danceImage);
+                
+                $(".gify-container").append(ratingDiv);
+                $(".gify-container").append(danceDiv);
+
 
 
             }
         })
     })
 
+    // Toggle between Still and Animated GIF's
     $(document).on("click", ".dance-image", function () {
         var state = $(this).attr("data-state");
         if (state == "still") {
